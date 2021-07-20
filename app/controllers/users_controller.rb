@@ -15,13 +15,12 @@ class UsersController < ApplicationController
             auth_token = Knock::AuthToken.new payload: {sub: @user.id}
             render json: {name: @user.full_name, jwt: auth_token.token}, status: :created
         else 
-            
-            render json: {error: "Incorrect email or password", user: @user}, status: 404
+            render json: {error: "Incorrect email or password", email: params}, status: 404
         end
     end
 
     private 
     def user_params 
-        params.permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
+        params.require(:users).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
     end
 end
