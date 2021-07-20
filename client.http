@@ -1,0 +1,43 @@
+### Menu Index
+GET http://localhost:3000/api/menu
+
+### Shows Item 
+GET http://localhost:3000/api/menu/1
+
+### unsuccesfully shows item 
+GET http://localhost:3000/api/menu/1000
+
+### successfuly update item 
+PUT http://localhost:3000/api/menu/1
+Content-Type: application/json
+
+{
+    "name": "Test123"
+}
+
+### Deletes menu item 
+DELETE http://localhost:3000/api/menu/2
+
+### Unsuccessfuly deletes joke 
+DELETE http://localhost:3000/api/menu/20000
+
+### successfully creates item 
+POST http://localhost:3000/api/menu
+Content-Type: application/json
+
+{
+    "name": "Test juice",
+    "category_id": 1
+}
+
+### unsuccessfully creates item 
+POST http://localhost:3000/api/menu
+Content-Type: application/json
+
+{
+    "name": "whatever juice"
+}
+
+
+
+
