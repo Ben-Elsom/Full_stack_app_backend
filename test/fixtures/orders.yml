@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: false
+  take_away: false
+  pickup_time: 2021-07-21 18:42:51
+  instructions: MyText
+  user: one
+
+two:
+  status: false
+  take_away: false
+  pickup_time: 2021-07-21 18:42:51
+  instructions: MyText
+  user: two
