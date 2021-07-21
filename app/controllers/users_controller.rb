@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     end
 
     def sign_in 
+        # CANT FIND USER WITH EMAIL
         @user = User.find_by(email: params[:email])
         if @user 
             auth_token = Knock::AuthToken.new payload: {sub: @user.id}
