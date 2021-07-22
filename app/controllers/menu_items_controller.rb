@@ -25,6 +25,7 @@ class MenuItemsController < ApplicationController
 
     def create 
         @item = MenuItem.create(item_params)
+        p item_params
         if @item.errors.any? 
             render json: @item.errors, status: :unprocessable_entity
         else 
@@ -47,6 +48,6 @@ class MenuItemsController < ApplicationController
     end
 
     def item_params 
-        params.require(:menu_item).permit(:name, :available, :description, :price, :category_id, :thumbnail)
+        params.permit(:name, :available, :description, :price, :category_id, :thumbnail)
     end
 end

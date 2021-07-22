@@ -1,4 +1,4 @@
 class MenuItem < ApplicationRecord
   belongs_to :category
-  has_one_attatched :thumbnail
+  has_one_attached :thumbnail
 end
