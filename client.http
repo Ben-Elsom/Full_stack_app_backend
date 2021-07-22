@@ -55,9 +55,10 @@ Content-Type: application/json
 ### Successfully sign_in. WHY IS THIS NOT WORKING
 POST http://localhost:3000/api/auth/sign_in
 Content-Type: application/json
+
 {
-    "email": "test@a.com",
-    "password": "password2"
+    "email": "test@b.com",
+    "password": "password5"
 }
 
 

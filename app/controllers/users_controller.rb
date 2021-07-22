@@ -12,16 +12,16 @@ class UsersController < ApplicationController
     def sign_in 
         # CANT FIND USER WITH EMAIL
         @user = User.find_by(email: params[:email])
-        if @user 
+        if @user && @user.password == params[:password]
             auth_token = Knock::AuthToken.new payload: {sub: @user.id}
             render json: {name: @user.full_name, jwt: auth_token.token}, status: :created
         else 
-            render json: {error: "Incorrect email or password", email: params}, status: 404
+            render json: {error: "Incorrect email or password"}, status: 404
         end
     end
 
     private 
     def user_params 
-        params.require(:users).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
+        params.permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
     end
 end
