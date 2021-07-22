@@ -10,7 +10,7 @@ User.destroy_all
 item_categories = ["Main", "Topping", "Side", "Drink"]
 
 item_categories.each do |category|
-    Category.create(name: category)
+    Category.create!(name: category)
     puts "created #{category} category"
 end
 
