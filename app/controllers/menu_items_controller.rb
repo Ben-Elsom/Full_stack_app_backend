@@ -34,8 +34,11 @@ class MenuItemsController < ApplicationController
     end
 
     def destroy 
-        @item.delete
-        render json: @item
+        if @item.delete
+            render json: {message: "Item successfully deleted"}
+        else 
+            render json: {error: "Item could not be deleted" }
+        end
     end
 
     private 
@@ -48,6 +51,6 @@ class MenuItemsController < ApplicationController
     end
 
     def item_params 
-        params.permit(:name, :available, :description, :price, :category_id, :thumbnail)
+        params.require(:menu_item).permit(:name, :available, :description, :price, :category_id, :thumbnail)
     end
 end

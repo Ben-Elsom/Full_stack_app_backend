@@ -2,23 +2,25 @@
 GET http://localhost:3000/api/menu
 
 ### Shows Item 
-GET http://localhost:3000/api/menu/1
+GET http://localhost:3000/api/menu/5
 
 ### unsuccesfully shows item 
 GET http://localhost:3000/api/menu/1000
 
 ### successfuly update item 
-PUT http://localhost:3000/api/menu/1
+PUT http://localhost:3000/api/menu/5
 Content-Type: application/json
 
 {
-    "name": "Test123"
+    "name": "Test123456",
+    "available": false,
+    "description": "Test with glen"
 }
 
 ### Deletes menu item 
-DELETE http://localhost:3000/api/menu/2
+DELETE http://localhost:3000/api/menu/3
 
-### Unsuccessfuly deletes joke 
+### Unsuccessfuly deletes item
 DELETE http://localhost:3000/api/menu/20000
 
 ### successfully creates item 
