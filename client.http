@@ -39,5 +39,28 @@ Content-Type: application/json
 }
 
 
+### create user 
+POST http://localhost:3000/api/auth/sign_up
+Content-Type: application/json
+
+{
+    "first_name": "Chelsey",
+    "last_name": "Bennett",
+    "email": "test@b.com",
+    "phone_number": "0408285129",
+    "password": "password3",
+    "password_confirmation": "password3"
+
+}
+### Successfully sign_in. WHY IS THIS NOT WORKING
+POST http://localhost:3000/api/auth/sign_in
+Content-Type: application/json
+
+{
+    "email": "test@b.com",
+    "password": "password5"
+}
+
+
 
 
