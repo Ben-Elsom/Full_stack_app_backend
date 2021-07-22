@@ -27,7 +27,7 @@ Content-Type: application/json
 
 {
     "name": "Test juice",
-    "category_id": 1
+    "category_id": 10
 }
 
 ### unsuccessfully creates item 
