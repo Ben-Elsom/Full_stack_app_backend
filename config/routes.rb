@@ -11,5 +11,11 @@ Rails.application.routes.draw do
       post '/sign_up', to: 'users#create' 
       post "/sign_in", to: 'users#sign_in'
     end
+    scope '/checkout' do 
+      post 'create', to: 'checkout#create', as: 'checkout_create'
+      get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+      get 'success', to: 'checkout#success', as: 'checkout_success'
+
+    end
   end
 end

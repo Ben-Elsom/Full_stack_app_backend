@@ -20,19 +20,34 @@ Content-Type: application/json
 ### Deletes menu item 
 DELETE http://localhost:3000/api/menu/3
 
-### Unsuccessfuly deletes item
+### Unsuccessfuly deletes item due to bad request 
 DELETE http://localhost:3000/api/menu/20000
+
+### Unsuccessfuly deletes item due to wrong auth 
+DELETE http://localhost:3000/api/menu/20000
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjczNTQzOTQsInN1YiI6OH0.KF0_eIuC119ivmXBMzzZl1wlY63Frqg5zA7RQjefDsU
 
 ### successfully creates item 
 POST http://localhost:3000/api/menu
 Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjczNTQyNzMsInN1YiI6N30.zw0MVWXlP1M7bmU7QPtfmusfXYQHp-ifhRRyy4SwY7c
 
 {
     "name": "Test juice",
-    "category_id": 10
+    "category_id": 22
 }
 
-### unsuccessfully creates item 
+### unsuccessfully creates item due to fail authorisation 
+POST http://localhost:3000/api/menu
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjczNTQzOTQsInN1YiI6OH0.KF0_eIuC119ivmXBMzzZl1wlY63Frqg5zA7RQjefDsU
+
+{
+    "name": "Test juice",
+    "category_id": 22
+}
+
+### unsuccessfully creates item due to wrong headers 
 POST http://localhost:3000/api/menu
 Content-Type: application/json
 
@@ -48,21 +63,38 @@ Content-Type: application/json
 {
     "first_name": "Chelsey",
     "last_name": "Bennett",
-    "email": "test@b.com",
+    "email": "test@c.com",
     "phone_number": "0408285129",
     "password": "password3",
     "password_confirmation": "password3"
 
 }
-### Successfully sign_in. WHY IS THIS NOT WORKING
+### sign in with corrrect details 
 POST http://localhost:3000/api/auth/sign_in
 Content-Type: application/json
 
 {
-    "email": "test@b.com",
-    "password": "password5"
+    "email": "test@c.com",
+    "password": "password3"
+}
+
+### sign in with incorrrect details 
+POST http://localhost:3000/api/auth/sign_in
+Content-Type: application/json
+
+{
+    "email": "test@c.com",
+    "password": "password4"
 }
 
 
+### admin sign in  
+POST http://localhost:3000/api/auth/sign_in
+Content-Type: application/json
+
+{
+    "email": "admin@kon.com",
+    "password": "123456"
+}
 
 
