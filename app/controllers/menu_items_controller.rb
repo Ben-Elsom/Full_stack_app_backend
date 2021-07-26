@@ -1,6 +1,6 @@
 class MenuItemsController < ApplicationController
-    before_action :check_permission, only: [:create, :destroy]
-    before_action :authenticate_user, except: [:index, :show]
+    # before_action :check_permission, only: [:create, :destroy]
+    # before_action :authenticate_user, except: [:index, :show]
     before_action :set_item, only: [:show, :update, :destroy]
     def index 
         @menuItems = MenuItem.all
@@ -29,14 +29,14 @@ class MenuItemsController < ApplicationController
 
 
     def create 
-        @item = current_user.menu_items.create(item_params)
+        @item = MenuItem.create!(item_params)
         # if @item.save 
         #     render json: {test: "success"}
         # else 
         #     render json: {test: "failure" }
         # end
         if @item.errors.any? 
-            render json: @item.errors, status: 401
+            render json: {error: @item.errors}, status: 401
         else 
             render json: @item, status: 201 
         end
@@ -60,7 +60,7 @@ class MenuItemsController < ApplicationController
     end
 
     def item_params 
-        params.require(:menu_item).permit(:name, :available, :description, :price, :category_id, :thumbnail)
+        params.permit(:user_id, :name, :available, :description, :price, :category_id, :thumbnail)
     end
 
     def check_permission 
