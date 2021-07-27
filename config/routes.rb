@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get "/menu/:id", to: "menu_items#show"
     put "/menu/:id", to: "menu_items#update"
     delete "menu/:id", to: "menu_items#destroy"
+    get "/categories", to: "categories#index"
     scope '/auth' do
       post '/sign_up', to: 'users#create' 
       post "/sign_in", to: 'users#sign_in'

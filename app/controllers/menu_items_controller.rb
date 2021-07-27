@@ -29,14 +29,14 @@ class MenuItemsController < ApplicationController
 
 
     def create 
-        @item = MenuItem.create!(item_params)
+        @item = MenuItem.create(item_params)
         # if @item.save 
         #     render json: {test: "success"}
         # else 
         #     render json: {test: "failure" }
         # end
         if @item.errors.any? 
-            render json: {error: @item.errors}, status: 401
+            render json: {error: @item.errors}, status: 422
         else 
             render json: @item, status: 201 
         end
@@ -44,7 +44,7 @@ class MenuItemsController < ApplicationController
 
     def destroy 
         if @item.delete
-            render json: {message: "Item successfully deleted"}
+            render json: {message: "Item successfully deleted"}, status: 200
         else 
             render json: {error: "Item could not be deleted" }
         end
