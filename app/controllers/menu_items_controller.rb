@@ -34,7 +34,7 @@ class MenuItemsController < ApplicationController
         else
             @item = MenuItem.create(item_params)
             if @item.errors.any? 
-                render json: @item.errors, status: 422
+                render json: {error: @item.errors}, status: 422
             else 
                 render json: @item, status: 201 
             end
