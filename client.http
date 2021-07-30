@@ -24,8 +24,8 @@ DELETE http://localhost:3000/api/menu/3
 DELETE http://localhost:3000/api/menu/20000
 
 ### Unsuccessfuly deletes item due to wrong auth 
-DELETE http://localhost:3000/api/menu/20000
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjczNTQzOTQsInN1YiI6OH0.KF0_eIuC119ivmXBMzzZl1wlY63Frqg5zA7RQjefDsU
+DELETE http://localhost:3000/api/menu/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Mjc2MjQ3NjMsInN1YiI6MX0.NeB99prZUyuzcjKKWvCrxmme-JmDXqkK0yxVHOxNO40
 
 ### successfully creates item 
 POST http://localhost:3000/api/menu

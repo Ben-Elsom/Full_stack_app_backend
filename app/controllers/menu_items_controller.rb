@@ -1,6 +1,6 @@
 class MenuItemsController < ApplicationController
-    # before_action :check_permission, only: [:create, :destroy]
-    # before_action :authenticate_user, except: [:index, :show]
+    before_action :check_permission, only: [:create, :destroy]
+    before_action :authenticate_user, except: [:index, :show]
     before_action :set_item, only: [:show, :update, :destroy]
     def index 
         @menuItems = MenuItem.all
@@ -20,6 +20,7 @@ class MenuItemsController < ApplicationController
 
     def update
         @item.update(item_params)
+        @item.attributes.merge({image_url: @item.thumbnail.url, category: @item.category.name })
         if @item.errors.any? 
             render json: @item, status: :unprocessable_entity
         else 
@@ -29,22 +30,21 @@ class MenuItemsController < ApplicationController
 
 
     def create 
-        @item = MenuItem.create!(item_params)
-        # if @item.save 
-        #     render json: {test: "success"}
-        # else 
-        #     render json: {test: "failure" }
-        # end
-        if @item.errors.any? 
-            render json: {error: @item.errors}, status: 401
-        else 
-            render json: @item, status: 201 
-        end
+        if params["thumbnail"] == "undefined"
+            render json: {error: {image: ["must exist"]}}, status: 422
+        else
+            @item = MenuItem.create(item_params)
+            if @item.errors.any? 
+                render json: {error: @item.errors}, status: 422
+            else 
+                render json: @item, status: 201 
+            end
+        end 
     end
 
     def destroy 
         if @item.delete
-            render json: {message: "Item successfully deleted"}
+            render json: {message: "Item successfully deleted"}, status: 200
         else 
             render json: {error: "Item could not be deleted" }
         end
@@ -60,11 +60,13 @@ class MenuItemsController < ApplicationController
     end
 
     def item_params 
-        params.permit(:user_id, :name, :available, :description, :price, :category_id, :thumbnail)
+        params.permit(:name, :available, :description, :price, :category_id, :thumbnail)
     end
 
-    def check_permission 
-        if !current_user.isAdmin 
+    def check_permission
+        puts "fgughfglk"
+        puts current_user
+        if !current_user.is_admin 
             render json: {error: "You do not have permission to perform that action"}
         end
     end
