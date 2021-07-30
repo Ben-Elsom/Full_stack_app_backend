@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
     def get_user
         # If the jwt token is legit, send back the user data
-        render json: {user: current_user}
+        render json: {user: current_user.filtered_information}
         # if @user
         #     render json: {@user.filtered_information}, status: 201
         # else 

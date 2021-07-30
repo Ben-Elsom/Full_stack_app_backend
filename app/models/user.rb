@@ -12,7 +12,7 @@ class User < ApplicationRecord
     def filtered_information 
         return {full_name: self.full_name,
                 id: self.id,
-                is_admin: self.isAdmin
+                is_admin: self.is_admin
             }
     end
 end

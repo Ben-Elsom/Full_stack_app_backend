@@ -44,3 +44,5 @@ gem "activestorage-cloudinary-service", "~> 0.2.3"
 gem "dotenv-rails", "~> 2.7"
 gem "knock", "~> 2.1"
 gem 'stripe'
+
+gem "rspec-rails", "~> 5.0"

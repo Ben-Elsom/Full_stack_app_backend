@@ -9,7 +9,7 @@ topping = Category.create!(name: "Topping")
 side = Category.create!(name: "Side")
 drink = Category.create!(name: "Drink")
 
-admin = User.create!(first_name: "Ben", last_name: "Elsom", email:"admin@kon.com", phone_number: "0408285128", password: "123456", password_confirmation: "123456", isAdmin: true )
+admin = User.create!(first_name: "Ben", last_name: "Elsom", email:"admin@kon.com", phone_number: "0408285128", password: "123456", password_confirmation: "123456", is_admin: true )
 
 MenuItem.create!(name: "Beef ramen", available: true, description: "Beef ramen with spring onion and wheat noodles", price: 9.90, category: main).thumbnail.attach(io: File.open(Rails.root.to_s + "/app/assets/beef_ramen.jpg"), filename: "beef_ramen.jpg", content_type: 'application/jpg')
 MenuItem.create!(name: "Pork ramen", available: true, description: "Pork ramen with spring onion and wheat noodles", price: 9.90, category: main).thumbnail.attach(io: File.open(Rails.root.to_s + "/app/assets/pork_ramen.jpg"), filename: "pork_ramen.jpg", content_type: 'application/jpg')

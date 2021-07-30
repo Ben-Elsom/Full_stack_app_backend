@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2021_07_26_023434) do
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "isAdmin", default: false
+    t.boolean "is_admin", default: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

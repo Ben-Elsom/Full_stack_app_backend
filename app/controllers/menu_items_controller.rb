@@ -20,6 +20,7 @@ class MenuItemsController < ApplicationController
 
     def update
         @item.update(item_params)
+        @item.attributes.merge({image_url: @item.thumbnail.url, category: @item.category.name })
         if @item.errors.any? 
             render json: @item, status: :unprocessable_entity
         else 
@@ -30,7 +31,7 @@ class MenuItemsController < ApplicationController
 
     def create 
         if params["thumbnail"] == "undefined"
-            render json: {error: "Need an image"}, status: 422
+            render json: {error: {image: ["must exist"]}}, status: 422
         else
             @item = MenuItem.create(item_params)
             if @item.errors.any? 
@@ -62,8 +63,10 @@ class MenuItemsController < ApplicationController
         params.permit(:name, :available, :description, :price, :category_id, :thumbnail)
     end
 
-    def check_permission 
-        if !current_user.isAdmin 
+    def check_permission
+        puts "fgughfglk"
+        puts current_user
+        if !current_user.is_admin 
             render json: {error: "You do not have permission to perform that action"}
         end
     end
