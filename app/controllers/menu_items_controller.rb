@@ -20,10 +20,10 @@ class MenuItemsController < ApplicationController
 
     def update
         @item.update(item_params)
-        @item.attributes.merge({image_url: @item.thumbnail.url, category: @item.category.name })
         if @item.errors.any? 
-            render json: @item, status: :unprocessable_entity
+            render json: {error: @item.errors}, status: :unprocessable_entity
         else 
+            @item = @item.attributes.merge({image_url: @item.thumbnail.url, category: @item.category.name })
             render json: @item, status: 201 
         end
     end
